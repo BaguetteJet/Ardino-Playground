@@ -29,4 +29,6 @@ void loop() {
   analogWrite(LEDR,   255 - r);
   analogWrite(LEDG, 255 - g);
   analogWrite(LEDB,  255 - b);
+
+  delay(10);
 }
