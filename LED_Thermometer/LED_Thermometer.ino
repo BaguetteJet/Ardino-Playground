@@ -74,7 +74,9 @@ void loop() {
   // read sensor values
   float temperature1 = HS300x.readTemperature();
   float temperature2 = BARO.readTemperature();
-  float avgTemp      = (temperature1+temperature2)/2;
+  float avgTemp  = (temperature1+temperature2)/2;
+  float pressure = BARO.readPressure()*10; // read pressure kPa and convert to hPa
+  float humidity = HS300x.readHumidity();
 
   Serial.print(temperature1);
   Serial.print("°C | ");
@@ -82,14 +84,11 @@ void loop() {
   Serial.print(temperature2);
   Serial.print("°C | ");
 
-  Serial.print("diff = ");
-  Serial.print(temperature1);
-  Serial.print("°C | ");
-
-  Serial.print(temperature2);
+  Serial.print("diff. ");
+  Serial.print(temperature1 - temperature2);
   Serial.print("°C | ");
   
-  Serial.print("avg. = ");
+  Serial.print("avg. ");
   Serial.print(avgTemp);
   Serial.print("°C | ");
 
@@ -98,6 +97,13 @@ void loop() {
   Serial.print(g);
   Serial.print(", ");
   Serial.print(b);
+  Serial.print(" | ");
+
+  Serial.print(humidity);
+  Serial.print("% | ");
+
+  Serial.print(pressure);
+  Serial.print("hPa");
 
   Serial.println();
 
